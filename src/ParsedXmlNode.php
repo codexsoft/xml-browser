@@ -85,7 +85,7 @@ class ParsedXmlNode
 
     /**
      * @param string $name
-     * @param null $default
+     * @param string|null $default
      *
      * @return string
      */
@@ -172,11 +172,11 @@ class ParsedXmlNode
      *
      * @return ParsedXmlNode[]
      */
-    public function getDescendantsByCssSelectorAsParsedXmlNodes(string $cssSelectorString, ?int $limit = null): array
+    public function getDescendants(string $cssSelectorString, ?int $limit = null): array
     {
         $this->assertCssSelectorIsInstalled();
         $xpath = self::$cssSelector->toXPath($cssSelectorString);
-        return $this->getDescendantsByXPathAsParsedXmlNodes($xpath, $limit);
+        return $this->getDescendantsByXPath($xpath, $limit);
     }
 
     /**
@@ -186,7 +186,7 @@ class ParsedXmlNode
      *
      * @return ParsedXmlNode[]
      */
-    public function getDescendantsByXPathAsParsedXmlNodes(string $xpath, ?int $limit = null): array
+    public function getDescendantsByXPath(string $xpath, ?int $limit = null): array
     {
         $foundNodes = $this->getDescendantsByXPathAsSimpleXMLElements($xpath, $limit);
         $convertedNodes = [];
@@ -201,9 +201,9 @@ class ParsedXmlNode
      *
      * @return ParsedXmlNode|null
      */
-    public function getFirstDescendantByCssSelectorAsParsedXmlNode(string $xpath): ?ParsedXmlNode
+    public function getFirstDescendant(string $xpath): ?ParsedXmlNode
     {
-        $foundNodes = $this->getDescendantsByCssSelectorAsParsedXmlNodes($xpath, 1);
+        $foundNodes = $this->getDescendants($xpath, 1);
         return \count($foundNodes) ? $foundNodes[0] : null;
     }
 
@@ -212,7 +212,7 @@ class ParsedXmlNode
      *
      * @return \SimpleXMLElement|null
      */
-    public function getFirstDescendantByCssSelectorAsSimpleXMLElement(string $xpath): ?\SimpleXMLElement
+    public function getFirstDescendantAsSimpleXMLElement(string $xpath): ?\SimpleXMLElement
     {
         $foundNodes = $this->getDescendantsByCssSelectorAsSimpleXMLElements($xpath, 1);
         return \count($foundNodes) ? $foundNodes[0] : null;
@@ -223,9 +223,9 @@ class ParsedXmlNode
      *
      * @return ParsedXmlNode|null
      */
-    public function getFirstDescendantByXPathAsParsedXmlNode(string $xpath): ?ParsedXmlNode
+    public function getFirstDescendantByXPath(string $xpath): ?ParsedXmlNode
     {
-        $foundNodes = $this->getDescendantsByXPathAsParsedXmlNodes($xpath, 1);
+        $foundNodes = $this->getDescendantsByXPath($xpath, 1);
         return \count($foundNodes) ? $foundNodes[0] : null;
     }
 
