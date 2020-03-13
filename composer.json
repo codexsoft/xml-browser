@@ -1,0 +1,24 @@
+{
+    "name": "codexsoft/xml-browser",
+    "description": "Tools for parsing and browsing XML data",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Dmitriy V Kozubskiy",
+            "email": "kozubsky@inbox.ru"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "CodexSoft\\XmlBrowser\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^7.1",
+        "ext-simplexml": "*"
+    },
+    "suggest": {
+        "symfony/css-selector": ""
+    }
+}
