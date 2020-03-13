@@ -258,8 +258,11 @@ class ParsedXmlNode
     /**
      * @return ParsedXmlNode[]
      */
-    public function getChildren(): array
+    public function getChildren(?string $tag = null): array
     {
+        if ($tag) {
+            return \array_key_exists($tag, $this->childrenByTag) ? $this->childrenByTag[$tag] : [];
+        }
         return $this->children;
     }
 
